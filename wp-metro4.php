@@ -10,7 +10,6 @@ Author URI: https://pimenov.com.ua
 License: MIT
 */
 
-
 function metro4_scripts(){
     $parent_style = basename(get_template_directory_uri()) . "-style";
 	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
