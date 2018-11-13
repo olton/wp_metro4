@@ -11,11 +11,17 @@ License: MIT
 */
 
 function metro4_scripts(){
-    $parent_style = get_stylesheet() . "-style";
+	global $wp_styles;
+	$parents = [];
+
+	foreach ($wp_styles->queue as $handle) {
+		$parents[] = $handle;
+	}
+
 	wp_enqueue_style( 'metro4-style',
 		"//cdn.metroui.org.ua/v4/css/metro-all.min.css",
-		array( $parent_style ),
-		wp_get_theme()->get('1.0.0')
+		$parents,
+		"4"
 	);
 
     wp_deregister_script('jquery');
@@ -23,4 +29,4 @@ function metro4_scripts(){
     wp_enqueue_script('jquery', "//code.jquery.com/jquery-3.3.1.min.js", array(), "3", true);
     wp_enqueue_script('metro4-script', "//cdn.metroui.org.ua/v4/js/metro.js", array(), "4", true);
 }
-add_action("wp_enqueue_scripts", "metro4_scripts");
+add_action("wp_enqueue_scripts", "metro4_scripts", 10000);
